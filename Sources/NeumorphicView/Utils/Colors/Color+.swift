@@ -23,7 +23,7 @@ extension Color {
         return RGBA.blend(rgbas: colors.compactMap { RGBA(color: $0) }, intensities: intensities)
     }
     
-    func getShadowColor() -> Color {
-        return Color.blend(colors: [self, .black], intensities: [0.8, 0.2]) ?? self
+    func getShadowColor(depth: CGFloat) -> Color {
+        return Color.blend(colors: [self, .black], intensities: [1 - depth, depth]) ?? self
     }
 }

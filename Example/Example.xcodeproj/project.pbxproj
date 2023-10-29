@@ -3,18 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		42483D892AEF0BAC00BCD4B1 /* NeumorphicView in Frameworks */ = {isa = PBXBuildFile; productRef = 42483D882AEF0BAC00BCD4B1 /* NeumorphicView */; };
 		4286979C2AE9C16600FA3137 /* ExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4286979B2AE9C16600FA3137 /* ExampleApp.swift */; };
 		4286979E2AE9C16600FA3137 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4286979D2AE9C16600FA3137 /* ContentView.swift */; };
 		428697A02AE9C16800FA3137 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4286979F2AE9C16800FA3137 /* Assets.xcassets */; };
 		428697A32AE9C16800FA3137 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 428697A22AE9C16800FA3137 /* Preview Assets.xcassets */; };
-		428697AB2AE9C1AA00FA3137 /* NeumorphicView in Frameworks */ = {isa = PBXBuildFile; productRef = 428697AA2AE9C1AA00FA3137 /* NeumorphicView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		42483D852AEF0B8E00BCD4B1 /* NeumorphicView */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = NeumorphicView; path = ..; sourceTree = "<group>"; };
+		42483D862AEF0BA600BCD4B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		428697982AE9C16600FA3137 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4286979B2AE9C16600FA3137 /* ExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleApp.swift; sourceTree = "<group>"; };
 		4286979D2AE9C16600FA3137 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -27,18 +29,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				428697AB2AE9C1AA00FA3137 /* NeumorphicView in Frameworks */,
+				42483D892AEF0BAC00BCD4B1 /* NeumorphicView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		42483D872AEF0BAC00BCD4B1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4286978F2AE9C16600FA3137 = {
 			isa = PBXGroup;
 			children = (
+				42483D852AEF0B8E00BCD4B1 /* NeumorphicView */,
 				4286979A2AE9C16600FA3137 /* Example */,
 				428697992AE9C16600FA3137 /* Products */,
+				42483D872AEF0BAC00BCD4B1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -53,6 +64,7 @@
 		4286979A2AE9C16600FA3137 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				42483D862AEF0BA600BCD4B1 /* Info.plist */,
 				4286979B2AE9C16600FA3137 /* ExampleApp.swift */,
 				4286979D2AE9C16600FA3137 /* ContentView.swift */,
 				4286979F2AE9C16800FA3137 /* Assets.xcassets */,
@@ -86,7 +98,7 @@
 			);
 			name = Example;
 			packageProductDependencies = (
-				428697AA2AE9C1AA00FA3137 /* NeumorphicView */,
+				42483D882AEF0BAC00BCD4B1 /* NeumorphicView */,
 			);
 			productName = Example;
 			productReference = 428697982AE9C16600FA3137 /* Example.app */;
@@ -117,7 +129,6 @@
 			);
 			mainGroup = 4286978F2AE9C16600FA3137;
 			packageReferences = (
-				428697A92AE9C1AA00FA3137 /* XCLocalSwiftPackageReference ".." */,
 			);
 			productRefGroup = 428697992AE9C16600FA3137 /* Products */;
 			projectDirPath = "";
@@ -283,6 +294,7 @@
 				DEVELOPMENT_TEAM = 8Q4KTDMYNZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Example/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -312,6 +324,7 @@
 				DEVELOPMENT_TEAM = 8Q4KTDMYNZ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Example/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -353,15 +366,8 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		428697A92AE9C1AA00FA3137 /* XCLocalSwiftPackageReference ".." */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ..;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		428697AA2AE9C1AA00FA3137 /* NeumorphicView */ = {
+		42483D882AEF0BAC00BCD4B1 /* NeumorphicView */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = NeumorphicView;
 		};

@@ -11,11 +11,13 @@ struct ConcaveModifier<S: Shape>: ViewModifier {
     private let shape: S
     private let lightColor: Color
     private let radius: CGFloat
+    private let depth: CGFloat
     
-    init(shape: S, lightColor: Color, radius: CGFloat) {
+    init(shape: S, lightColor: Color, radius: CGFloat, depth: CGFloat) {
         self.shape = shape
         self.lightColor = lightColor
         self.radius = radius
+        self.depth = depth
     }
     
     func body(content: Content) -> some View {
@@ -27,7 +29,7 @@ struct ConcaveModifier<S: Shape>: ViewModifier {
     
     @ViewBuilder
     private func overlay(isLightSide: Bool) -> some View {
-        let color = isLightSide ? lightColor : lightColor.getShadowColor()
+        let color = isLightSide ? lightColor : lightColor.getShadowColor(depth: depth)
         let sign: CGFloat = isLightSide ? -1 : 1
         
         shape

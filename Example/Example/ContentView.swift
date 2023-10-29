@@ -11,16 +11,18 @@ import NeumorphicView
 struct ContentView: View {
     var body: some View {
         ZStack {
-            Button("Click Me") {
+            Button("Me") {
                 print("Tap")
             }
             .tint(.black)
-            .frame(width: 200, height: 100)
+            .frame(width: 40, height: 40)
             .roundedNeuShadow(
-                cornerRadius: 20,
+                cornerRadius: 10,
                 state: .inout,
                 mainColor: Color(red: 0.9, green: 0.9, blue: 0.9),
-                padding: 3
+                shadowRadius: 2,
+                depth: 0.4,
+                padding: 2
             )
         }
         .padding()

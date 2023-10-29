@@ -15,6 +15,7 @@ extension View {
         mainColor: Color,
         lightColor: Color = .white,
         radius: CGFloat = 4,
+        depth: CGFloat = 0.2,
         padding: CGFloat = 3,
         blurIntensity: CGFloat = 0.5
     ) -> some View {
@@ -24,13 +25,26 @@ extension View {
                     if state == .out || state == .inout {
                         outerShape
                             .fill(mainColor)
-                            .modifier(ConvexModifier(lightColor: lightColor, radius: radius))
+                            .modifier(
+                                ConvexModifier(
+                                    lightColor: lightColor,
+                                    radius: radius,
+                                    depth: depth
+                                )
+                            )
                             .blur(radius: padding * blurIntensity)
                     }
                     if let innerShape, state == .in || state == .inout {
                         innerShape
                             .fill(mainColor)
-                            .modifier(ConcaveModifier(shape: innerShape, lightColor: lightColor, radius: radius))
+                            .modifier(
+                                ConcaveModifier(
+                                    shape: innerShape,
+                                    lightColor: lightColor,
+                                    radius: radius,
+                                    depth: depth
+                                )
+                            )
                             .padding(padding)
                             .blur(radius: padding * blurIntensity)
                     }
@@ -46,6 +60,7 @@ extension View {
         mainColor: Color,
         lightColor: Color = .white,
         shadowRadius: CGFloat = 4,
+        depth: CGFloat = 0.2,
         padding: CGFloat = 3,
         blurIntensity: CGFloat = 0.5
     ) -> some View {
@@ -56,6 +71,7 @@ extension View {
             mainColor: mainColor,
             lightColor: lightColor,
             radius: shadowRadius,
+            depth: depth,
             padding: padding,
             blurIntensity: blurIntensity
         )
