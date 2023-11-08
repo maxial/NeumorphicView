@@ -8,19 +8,22 @@
 import SwiftUI
 
 struct ConvexModifier: ViewModifier {
-    private let lightColor: Color
+    private let mainColor: Color
     private let radius: CGFloat
-    private let depth: CGFloat
+    private let intensity: CGFloat
     
-    init(lightColor: Color, radius: CGFloat, depth: CGFloat) {
-        self.lightColor = lightColor
+    init(mainColor: Color, radius: CGFloat, intensity: CGFloat) {
+        self.mainColor = mainColor
         self.radius = radius
-        self.depth = depth
+        self.intensity = intensity
     }
     
     func body(content: Content) -> some View {
+        let lightColor = mainColor.getLightColor(intensity: intensity)
+        let shadowColor = mainColor.getShadowColor(intensity: intensity)
+        
         content
-            .shadow(color: lightColor.getShadowColor(depth: depth), radius: radius, x: radius * 2, y: radius * 2)
+            .shadow(color: shadowColor, radius: radius, x: radius * 2, y: radius * 2)
             .shadow(color: lightColor, radius: radius, x: -radius * 2, y: -radius * 2)
     }
 }

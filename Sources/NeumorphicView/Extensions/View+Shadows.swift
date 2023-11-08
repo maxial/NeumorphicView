@@ -13,11 +13,10 @@ extension View {
         innerShape: S? = nil,
         state: ShadowState = .out,
         mainColor: Color,
-        lightColor: Color = .white,
-        radius: CGFloat = 4,
-        depth: CGFloat = 0.2,
+        shadowRadius: CGFloat = 4,
         padding: CGFloat = 3,
-        blurIntensity: CGFloat = 0.5
+        lightIntensity: CGFloat = 0.2,
+        blurIntensity: CGFloat = 0.4
     ) -> some View {
         background(
             GeometryReader { geometry in
@@ -27,9 +26,9 @@ extension View {
                             .fill(mainColor)
                             .modifier(
                                 ConvexModifier(
-                                    lightColor: lightColor,
-                                    radius: radius,
-                                    depth: depth
+                                    mainColor: mainColor,
+                                    radius: shadowRadius,
+                                    intensity: lightIntensity
                                 )
                             )
                             .blur(radius: padding * blurIntensity)
@@ -40,9 +39,9 @@ extension View {
                             .modifier(
                                 ConcaveModifier(
                                     shape: innerShape,
-                                    lightColor: lightColor,
-                                    radius: radius,
-                                    depth: depth
+                                    mainColor: mainColor,
+                                    radius: shadowRadius,
+                                    intensity: lightIntensity
                                 )
                             )
                             .padding(padding)
@@ -58,22 +57,25 @@ extension View {
         cornerRadius: CGFloat = 10,
         state: ShadowState = .out,
         mainColor: Color,
-        lightColor: Color = .white,
         shadowRadius: CGFloat = 4,
-        depth: CGFloat = 0.2,
         padding: CGFloat = 3,
-        blurIntensity: CGFloat = 0.5
+        lightIntensity: CGFloat = 0.2,
+        blurIntensity: CGFloat = 0.4
     ) -> some View {
-        neuShadow(
-            outerShape: RoundedRectangle(cornerRadius: cornerRadius),
-            innerShape: RoundedRectangle(cornerRadius: cornerRadius - padding),
-            state: state,
-            mainColor: mainColor,
-            lightColor: lightColor,
-            radius: shadowRadius,
-            depth: depth,
-            padding: padding,
-            blurIntensity: blurIntensity
+        let outerShape = RoundedRectangle(cornerRadius: cornerRadius)
+        let innerShape = RoundedRectangle(cornerRadius: cornerRadius - padding)
+        
+        self
+            .clipShape(outerShape)
+            .neuShadow(
+                outerShape: outerShape,
+                innerShape: innerShape,
+                state: state,
+                mainColor: mainColor,
+                shadowRadius: shadowRadius,
+                padding: padding,
+                lightIntensity: lightIntensity,
+                blurIntensity: blurIntensity
         )
     }
 }

@@ -9,33 +9,29 @@ import SwiftUI
 
 struct ConcaveModifier<S: Shape>: ViewModifier {
     private let shape: S
-    private let lightColor: Color
+    private let mainColor: Color
     private let radius: CGFloat
-    private let depth: CGFloat
+    private let intensity: CGFloat
     
-    init(shape: S, lightColor: Color, radius: CGFloat, depth: CGFloat) {
+    init(shape: S, mainColor: Color, radius: CGFloat, intensity: CGFloat) {
         self.shape = shape
-        self.lightColor = lightColor
+        self.mainColor = mainColor
         self.radius = radius
-        self.depth = depth
+        self.intensity = intensity
     }
     
     func body(content: Content) -> some View {
         content
-            .overlay(overlay(isLightSide: true))
-            .overlay(overlay(isLightSide: false))
+            .overlay(overlay(color: mainColor.getLightColor(intensity: intensity), offset: -1))
+            .overlay(overlay(color: mainColor.getShadowColor(intensity: intensity), offset: 1))
             .mask(shape)
     }
     
-    @ViewBuilder
-    private func overlay(isLightSide: Bool) -> some View {
-        let color = isLightSide ? lightColor : lightColor.getShadowColor(depth: depth)
-        let sign: CGFloat = isLightSide ? -1 : 1
-        
+    private func overlay(color: Color, offset: CGFloat) -> some View {
         shape
             .fill(color)
-            .inverseMask(shape.offset(CGSize(width: sign * radius * 2, height: sign * radius * 2)))
-            .offset(CGSize(width: sign * -radius * 2, height: sign * -radius * 2))
-            .shadow(color: color, radius: radius, x: sign * radius, y: sign * radius)
+            .inverseMask(shape.offset(CGSize(width: offset * radius * 2, height: offset * radius * 2)))
+            .offset(CGSize(width: offset * -radius * 2, height: offset * -radius * 2))
+            .shadow(color: color, radius: radius, x: offset * radius, y: offset * radius)
     }
 }

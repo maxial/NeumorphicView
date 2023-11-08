@@ -14,16 +14,25 @@ extension Color {
         self = RGBA(hex: hex).color
     }
     
-    func withBrightness(multiplier: CGFloat) -> Color {
+    func multiplyBrightness(by value: CGFloat) -> Color {
         var hsba = HSBA(color: self)
-        return hsba?.withBrightness(multiplier: multiplier).color ?? self
+        return hsba?.multiplyBrightness(by: value).color ?? self
+    }
+    
+    func addBrightness(value: CGFloat) -> Color {
+        var hsba = HSBA(color: self)
+        return hsba?.addBrightness(value: value).color ?? self
     }
     
     static func blend(colors: [Color], intensities: [CGFloat]) -> Color? {
         return RGBA.blend(rgbas: colors.compactMap { RGBA(color: $0) }, intensities: intensities)
     }
     
-    func getShadowColor(depth: CGFloat) -> Color {
-        return Color.blend(colors: [self, .black], intensities: [1 - depth, depth]) ?? self
+    func getLightColor(intensity: CGFloat) -> Color {
+        return self.addBrightness(value: intensity)
+    }
+    
+    func getShadowColor(intensity: CGFloat) -> Color {
+        return self.addBrightness(value: -intensity)
     }
 }

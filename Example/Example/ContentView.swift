@@ -14,20 +14,20 @@ struct ContentView: View {
             Button("Me") {
                 print("Tap")
             }
-            .tint(.black)
-            .frame(width: 40, height: 40)
+            .tint(.white)
+            .frame(width: 100, height: 40)
             .roundedNeuShadow(
                 cornerRadius: 10,
                 state: .inout,
-                mainColor: Color(red: 0.9, green: 0.9, blue: 0.9),
+                mainColor: Color(red: 0.1, green: 0.1, blue: 0.1),
                 shadowRadius: 2,
-                depth: 0.4,
-                padding: 2
+                padding: 2,
+                lightIntensity: 0.2
             )
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(red: 0.9, green: 0.9, blue: 0.9))
+        .background(Color(red: 0.1, green: 0.1, blue: 0.1))
     }
 }
 

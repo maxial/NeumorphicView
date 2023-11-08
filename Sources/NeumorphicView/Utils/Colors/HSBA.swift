@@ -32,8 +32,13 @@ struct HSBA: ColorModel {
         self.init(h: h, s: s, b: b, a: a)
     }
     
-    mutating func withBrightness(multiplier: CGFloat) -> HSBA {
-        self.b *= multiplier
+    mutating func multiplyBrightness(by value: CGFloat) -> HSBA {
+        self.b *= value
+        return self
+    }
+    
+    mutating func addBrightness(value: CGFloat) -> HSBA {
+        self.b = min(max(.zero, b + value), 1)
         return self
     }
     
